@@ -9,6 +9,12 @@ const Hero = ({ isSignedIn }) => {
     }
 
     const file = e.target.files[0];
+
+      if (!file.type.startsWith("image/")) {
+        alert("Only image files are allowed!");
+        return;
+      }
+
     if (file) {
       console.log("Uploaded:", file);
     }
@@ -36,6 +42,7 @@ const Hero = ({ isSignedIn }) => {
           id="fileUpload"
           className="hidden"
           onChange={handleFileChange}
+          accept="image/*"
         />
 
         <label

@@ -2,17 +2,18 @@ import React from "react";
 import { assets } from "../assets/assets";
 
 const Upload = ({ isSignedIn }) => {
-
-
-
   const handleFileChange = (e) => {
-
-    if(isSignedIn){
+    if (isSignedIn) {
       alert("Please sign in first.");
       return;
     }
 
     const file = e.target.files[0];
+
+    if (!file.type.startsWith("image/")) {
+      alert("Only image files are allowed!");
+      return;
+    }
     if (file) {
       console.log("Selected file:", file);
     }
@@ -33,6 +34,7 @@ const Upload = ({ isSignedIn }) => {
           id="fileUpload"
           className="hidden"
           onChange={handleFileChange}
+          accept="image/*"
         />
 
         <label
