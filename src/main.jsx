@@ -5,14 +5,18 @@ import "./index.css";
 import App from "./App.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import { ClerkProvider } from "@clerk/react";
+import UserContextProvider from "./context/User.context.jsx";
+import { Toaster } from "react-hot-toast";
+
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
     <BrowserRouter>
       <ScrollToTop />
       <ClerkProvider>
-        <App />
+        <UserContextProvider>
+          <App />
+          <Toaster />
+        </UserContextProvider>
       </ClerkProvider>
     </BrowserRouter>
-  </StrictMode>,
 );

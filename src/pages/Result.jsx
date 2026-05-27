@@ -1,8 +1,12 @@
 import React from "react";
 import { assets } from "../assets/assets";
+import { useUserContext } from "../context/UserContext";
 
 const Result = () => {
-  const isLoading = true;
+
+  const { loading, resultImage } = useUserContext();
+
+  const isLoading = loading;
 
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-gray-100 px-4 md:px-12 lg:px-24 py-10">
@@ -40,7 +44,7 @@ const Result = () => {
                 </div>
               ) : (
                 <img
-                  src={assets.image_wo_bg}
+                  src={resultImage ? resultImage : assets.image_w_bg}
                   alt="Result"
                   className="w-full h-full object-cover transition duration-300 hover:scale-105"
                 />

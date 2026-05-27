@@ -1,13 +1,11 @@
 import React from "react";
 import { assets } from "../assets/assets";
+import { useUserContext } from "../context/UserContext";
 
-const Upload = ({ isSignedIn }) => {
+const Upload = () => {
+  const { removeBg } = useUserContext();
+
   const handleFileChange = (e) => {
-    if (isSignedIn) {
-      alert("Please sign in first.");
-      return;
-    }
-
     const file = e.target.files[0];
 
     if (!file.type.startsWith("image/")) {
@@ -15,6 +13,7 @@ const Upload = ({ isSignedIn }) => {
       return;
     }
     if (file) {
+      removeBg(file);
       console.log("Selected file:", file);
     }
   };

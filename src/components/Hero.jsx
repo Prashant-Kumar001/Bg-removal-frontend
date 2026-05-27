@@ -1,22 +1,19 @@
 import React from "react";
 import { assets } from "../assets/assets";
+import { useUserContext } from "../context/UserContext";
 
-const Hero = ({ isSignedIn }) => {
+const Hero = () => {
+  const { removeBg } = useUserContext();
   const handleFileChange = (e) => {
-    if (!isSignedIn) {
-      alert("Please sign in first.");
+    const file = e.target.files[0];
+
+    if (!file.type.startsWith("image/")) {
+      alert("Only image files are allowed!");
       return;
     }
 
-    const file = e.target.files[0];
-
-      if (!file.type.startsWith("image/")) {
-        alert("Only image files are allowed!");
-        return;
-      }
-
     if (file) {
-      console.log("Uploaded:", file);
+      removeBg(file);
     }
   };
 
